@@ -69,6 +69,7 @@ func TestSlice(t *testing.T)  {
 	t.Log(s1[0],s1[1],s1[2])
 }
 
+222
 /**
  * map底层采用hash
  */
