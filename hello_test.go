@@ -1,6 +1,10 @@
 package main
 
-import "testing"
+import (
+	"errors"
+	"fmt"
+	"testing"
+)
 
 /**
  * 编写go测试程序
@@ -76,11 +80,122 @@ func TestMap(t *testing.T)  {
 	var a = map[string] int {"test":1,"test1":2,"test2":3}
 	for i,index :=range a{
 		t.Log(i,index)
-
 	}
+	var b= map[int] int{}
+	b[0] =1
+	b[1] =2
+	t.Log(b)
+	t.Log(Returntest())
+}
+func Returntest() (int, int){
+	return 100,200
+}
+type student struct {
+	name string
+	age int
+}
+/**
+ * go面向对象
+ * 初始化
+ * 1. student {1,2,3}
+ * 2. student {k1:v1,k2:v2}
+ * 3. new (student)
+ * 4. & student{"test",1}
+ */
+
+func TestObject (t *testing.T)  {
+	a := student{"fengwnewne",2}
+	fmt.Println("a address is %x",&a.name)
+	t.Log(a.string())
+	t.Log(a.zhizhen())
+	}
+
+func (s student) string() string   {
+	fmt.Println("address is %x",&s.name)
+	return fmt.Sprintf("name is %s,age is %d",s.name,s.age)
+}
+
+func (s *student) zhizhen() string {
+	fmt.Println("address is x%",&s.name)
+	return fmt.Sprintf("name is %s,age is %d",s.name,s.age)
+}
+
+/**
+ * go接口
+ */
+type Prog interface {
+	WriteHelloWord() string
+}
+type GoProg struct {
+	
+}
+
+func (Go *GoProg) WriteHelloWord() string  {
+	return "hello world"
+}
+
+func TestInterface(t *testing.T)  {
+	var b Prog
+	b = new(GoProg)
+	t.Log(b.WriteHelloWord())
+}
+type Phone interface {
+	call()
+}
+
+type NokiaPhone struct {
+}
+
+func (nokiaPhone NokiaPhone) call() {
+	fmt.Println("I am Nokia, I can call you!")
+}
+
+type IPhone struct {
+}
+
+func (iPhone IPhone) call() {
+	fmt.Println("I am iPhone, I can call you!")
+}
+
+func TestCainaio(t *testing.T) {
+	var phone Phone
+	phone = new(NokiaPhone)
+	phone.call()
+
+	phone1 := new(IPhone)
+	phone1.call()
 
 }
 
+type pet struct {
+
+}
+
+func (p *pet) Speak()  {
+	fmt.Println("....")
+}
+func (p *pet) SpeakTo(host string)  {
+	p.Speak()
+	fmt.Println("", host)
+}
+
+type Dog struct {
+	 p* pet
+}
+
+func (d *Dog)Speak()  {
+	fmt.Println("wang")
+}
+
+
+func TestOxtend(t *testing.T)  {
+	var d Dog
+	d.Speak()
+}
+
+func TestError(t *testing.T)  {
+	t.Log(errors.New("error"))
+}
 
 
 
