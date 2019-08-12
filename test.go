@@ -20,3 +20,4 @@ func main()  {
 	fmt.Println(c.X, c.Y)
 }
 1
+2
