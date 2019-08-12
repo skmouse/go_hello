@@ -19,3 +19,4 @@ func main()  {
 	c.Center()
 	fmt.Println(c.X, c.Y)
 }
+1
